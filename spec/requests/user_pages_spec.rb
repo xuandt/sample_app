@@ -12,5 +12,7 @@ describe "UserPages" do
       visit signup_path
       expect(page).to have_title("Ruby on Rails Tutorial Sample App | Sign up")
     end
+
+    
 end
 end
