@@ -1,5 +1,7 @@
-Rails.application.routes.draw do
-	resources :users
+  SampleApp::Application.routes.draw do
+  resources :users
+  resources :sessions,   only: [:new, :create, :destroy]
+  resources :microposts
 
   root  'static_pages#home'
   
