@@ -24,9 +24,16 @@ describe Micropost do
     before { @micropost.content = " " }
     it { should_not be_valid }
   end
-
   describe "with content that is too long" do
     before { @micropost.content = "a" * 141 }
+    it { should_not be_valid }
+  end
+  describe "when followed id is not present" do
+    before { relationship.followed_id = nil }
+    it { should_not be_valid }
+  end
+  describe "when follower id is not present" do
+    before { relationship.follower_id = nil }
     it { should_not be_valid }
   end
 end

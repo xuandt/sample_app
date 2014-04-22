@@ -4,6 +4,12 @@ class MicropostsController < ApplicationController
   def index
     @microposts =  Micropost.all
   end
+  
+  def show
+    @micropost = Micropost.find params[:id]
+    @comments = @micropost.comments.paginate(page: params[:page])
+  end
+    
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
@@ -17,7 +23,6 @@ class MicropostsController < ApplicationController
     @micropost.destroy
     redirect_to root_url
   end
-
   private
     def micropost_params
       params.require(:micropost).permit(:content)
